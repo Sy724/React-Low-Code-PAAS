@@ -1,24 +1,24 @@
-import {useEffect} from 'react';
-import useLocalObservable from "../../hooks/useLocalObserver";
-import {pathToRegexp} from 'path-to-regexp';
-import Header from "./components/header";
+import {MobXProviderContext} from "../../hooks";
+import CommonHeader from "./components/CommonHeader";
+import EditorModel from "./model";
+import {Layout} from "antd";
+import ContentWrapper from "./components/ContentWrapper";
+
+const editorModel = new EditorModel();
 
 const Editor = () => {
-  const { store, updateStore } = useLocalObservable(() => ({
-    templateName: '',
-  }))
-  
-  useEffect(() => {
-    const match = pathToRegexp('/editor/:template').exec(window.location.pathname);
-    console.log(match)
-    updateStore({
-      templateName: match[1],
-    })
-  }, [])
-  
   return (
     <div>
-      <Header />
+      <MobXProviderContext.Provider value={{ editorModel }}>
+        <div>
+          <CommonHeader />
+          <Layout style={{ height: 'calc(100vh - 46px)'}}>
+            <Layout.Content>
+              <ContentWrapper />
+            </Layout.Content>
+          </Layout>
+        </div>
+      </MobXProviderContext.Provider>
     </div>
   );
 }

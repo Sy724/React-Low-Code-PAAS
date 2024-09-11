@@ -1,7 +1,9 @@
+// @ts-ignore
+import React from 'react';
 import { action, AnnotationsMap } from 'mobx';
 import { useLocalObservable as useLocalObservableOriginal } from 'mobx-react-lite';
 
-export default function useLocalObservable<TStore extends Record<string, any>>(
+export function useLocalObservable<TStore extends Record<string, any>>(
   initializer: () => TStore,
   annotations?: AnnotationsMap<TStore, never>,
 ) {
@@ -17,4 +19,11 @@ export default function useLocalObservable<TStore extends Record<string, any>>(
     updateStore,
     resetStore,
   };
+}
+
+
+export const MobXProviderContext = React.createContext<any>({});
+
+export function useStores<T>(): T {
+  return React.useContext(MobXProviderContext);
 }
