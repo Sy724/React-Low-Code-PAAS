@@ -1,8 +1,9 @@
-import {MobXProviderContext} from "../../hooks";
+import { MobXProviderContext } from "../../hooks";
 import CommonHeader from "./components/CommonHeader";
 import EditorModel from "./model";
-import {Layout} from "antd";
+import { Layout } from "antd";
 import ContentWrapper from "./components/ContentWrapper";
+import React from "react";
 
 const editorModel = new EditorModel();
 
@@ -12,7 +13,7 @@ const Editor = () => {
       <MobXProviderContext.Provider value={{ editorModel }}>
         <div>
           <CommonHeader />
-          <Layout style={{ height: 'calc(100vh - 46px)'}}>
+          <Layout style={{ height: "calc(100vh - 46px)" }}>
             <Layout.Content>
               <ContentWrapper />
             </Layout.Content>
@@ -21,6 +22,6 @@ const Editor = () => {
       </MobXProviderContext.Provider>
     </div>
   );
-}
+};
 
 export default Editor;
