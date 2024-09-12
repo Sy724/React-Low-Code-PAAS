@@ -9,7 +9,8 @@ const FieldWrapper = () => {
     editorModel: EditorModel;
   }>();
   const { defaultFieldComponent } = editorModel;
-
+  
+  console.log(defaultFieldComponent)
   return (
     <div className="p-2" style={{ width: "280px", backgroundColor: "#fafafa" }}>
       <Row gutter={[4, 4]}>
@@ -22,6 +23,9 @@ const FieldWrapper = () => {
                 className="p-1 m-1 bg-white cursor-pointer rounded ring-1 text-sm text-gray-500 flex items-center"
                 title={v.name}
                 draggable
+                onDragOver={(event) => {
+                  event.preventDefault();
+                }}
                 onDragStart={e => {
                   const newComponent = {
                     type: v.type,

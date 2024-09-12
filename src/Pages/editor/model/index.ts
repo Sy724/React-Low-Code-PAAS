@@ -4,7 +4,9 @@ import { EditorOperate } from "../types";
 import { defaultFields } from "../../../common/constant/templateEditor";
 
 class EditorModel {
+  // 表单名称
   templateApiName = '';
+  // 可用字段
   defaultFieldComponent = defaultFields.map(v => ({
     ...v,
     dataTypeConstraintValues: v.dataTypeConstraintValues.map((constraint) => {
@@ -21,6 +23,8 @@ class EditorModel {
       };
     })
   }));
+  // 拖拽生成的字段
+  componentList = [];
   editorOperate: EditorOperate = EditorOperate.Design;
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
